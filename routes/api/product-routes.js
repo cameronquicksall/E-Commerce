@@ -6,16 +6,16 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 // get all products
 router.get('/', (req, res) => {
   // find all products
-  Product.findAll(
-    {
+  Product.findAll({
+    attributes: ['id', 'product_name', 'price', 'stock', 'category_id'],
       include: [
         {
           model: Category,
-          attributes: ['category_name']
+          attributes: ['id', 'category_name']
         },
         {
           model: Tag,
-          attributes: ['tag_name']
+          attributes: ['id', 'tag_name']
         }
       ]
     }
@@ -37,11 +37,11 @@ router.get('/:id', (req, res) => {
       },
       include: [{
         model: Category,
-        attributes: ['category_name']
+        attributes: ['id','category_name']
       },
           {
             model: Tag,
-            attributes: ['tag_name']
+            attributes: ['id','tag_name']
           }
         ]
       }
